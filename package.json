@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/boardgaming.icu/redis#readme",
   "dependencies": {
-    "@types/node": "^22.14.0",
     "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
   }
 }
