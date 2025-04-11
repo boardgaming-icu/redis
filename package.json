@@ -1,0 +1,26 @@
+{
+  "name": "@boardgaming-icu/redis",
+  "version": "1.0.0",
+  "description": "Redis pub/sub client for boardgaming.icu",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boardgaming.icu/redis.git"
+  },
+  "author": "Matthew S. <me@ocld.cc>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/boardgaming.icu/redis/issues"
+  },
+  "homepage": "https://github.com/boardgaming.icu/redis#readme",
+  "dependencies": {
+    "@types/node": "^22.14.0",
+    "redis": "^4.7.0"
+  }
+}
