@@ -4,7 +4,6 @@ import EventEmitter from 'node:events';
 export default class RedisClient extends EventEmitter {
     subscriber: RedisClientType<any, any, any>;
     publisher: RedisClientType<any, any, any>;
-    blocker: RedisClientType<any, any, any>;
     constructor(options?: RedisClientOptions<any>);
     connect(): Promise<void>;
     subscribe(channel: string, callback: (message: string, client: this) => void): Promise<void>;
@@ -18,6 +17,5 @@ export default class RedisClient extends EventEmitter {
     delete(key: string): Promise<void>;
     acquireLock(lockKey: string, lockValue: string, timeout?: number): Promise<boolean>;
     releaseLock(lockKey: string): Promise<void>;
-    blpop(key: string, timeout?: number): Promise<[string, string] | null>;
     disconnect(): Promise<void>;
 }

@@ -5,16 +5,13 @@ export default class RedisClient extends EventEmitter {
         super();
         this.subscriber = createClient(options);
         this.publisher = createClient(options);
-        this.blocker = createClient(options); // <--- Dedicated client for BLPOP
         this.subscriber.on('error', (err) => this.emit('subError', err));
         this.publisher.on('error', (err) => this.emit('pubError', err));
-        this.blocker.on('error', (err) => this.emit('blockError', err)); // optional
     }
     async connect() {
         await Promise.all([
             this.subscriber.connect(),
             this.publisher.connect(),
-            this.blocker.connect(), // <--- Connect the blocker
         ]);
     }
     async subscribe(channel, callback) {
@@ -56,15 +53,10 @@ export default class RedisClient extends EventEmitter {
     async releaseLock(lockKey) {
         await this.publisher.del(lockKey);
     }
-    async blpop(key, timeout = 0) {
-        const res = await this.blocker.blPop(key, timeout);
-        return res ? [res.key, res.element] : null;
-    }
     async disconnect() {
         await Promise.all([
             this.subscriber.quit(),
             this.publisher.quit(),
-            this.blocker.quit(),
         ]);
     }
 }
